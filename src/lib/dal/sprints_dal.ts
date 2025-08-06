@@ -16,8 +16,10 @@ export const get_active_scheduled_sprints = async (): Promise<{
       include: {
         stories: true,
       },
+      orderBy: {
+        status: "asc",
+      },
     });
-    console.log(all_sprints);
     return { success: true, data: all_sprints };
   } catch (error) {
     console.log(error);

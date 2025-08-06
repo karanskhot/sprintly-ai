@@ -7,30 +7,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import SprintForm from "./SprintForm";
 import StoryForm from "./StoryForm";
 import { get_active_scheduled_sprints } from "@/lib/dal/sprints_dal";
 
 interface IDialogTriggerProps {
   children: ReactNode;
-  dialogType: string;
 }
-const DialogContainer = async ({ children, dialogType }: IDialogTriggerProps) => {
-  const data = await get_active_scheduled_sprints();
-  console.log(data);
+const DialogContainer = async ({ children }: IDialogTriggerProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild className="cursor-pointer">
-        <SidebarMenuItem>
-          <SidebarMenuButton className="cursor-pointer text-base">{children}</SidebarMenuButton>
-        </SidebarMenuItem>
+        <span className="cursor-pointer text-base">{children}</span>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="w-full text-center text-2xl">{dialogType}</DialogTitle>
+          <DialogTitle className="w-full text-center text-2xl">{"Story"}</DialogTitle>
           <DialogDescription></DialogDescription>
-          {dialogType === "Sprint" ? <SprintForm /> : <StoryForm />}
+          <StoryForm />
         </DialogHeader>
       </DialogContent>
     </Dialog>

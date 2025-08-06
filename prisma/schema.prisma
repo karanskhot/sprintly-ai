@@ -7,32 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Sprint {
-  id         String   @id @unique @default(cuid())
-  userId     String
-  name       String
-  notes      String
-  start_date DateTime
-  end_date   DateTime
-  status     Status   @default(Scheduled)
-  stories    Story[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+model UserProfile {
+  id                        String    @id @unique @default(cuid())
+  userId                    String    @unique
+  email                     String? // Store email for reports
+  sendDailyProgressReports  Boolean   @default(true)
+  dailyProgressReportTime   String    @default("23:00")
+  isDailyProgressReportSent Boolean   @default(false)
+  lastReportSentAt          DateTime?
 
-  @@map("sprints")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("profile")
 }
 
 model Story {
-  id        String    @id @unique @default(cuid())
-  userId    String
-  name      String
-  notes     String?
-  dueDate   DateTime?
-  priority  Priority  @default(Medium)
-  status    Status    @default(Scheduled)
-  reminders Boolean   @default(false)
-  sprintId  String
-  Sprint    Sprint    @relation(fields: [sprintId], references: [id], onDelete: Cascade)
+  id       String   @id @unique @default(cuid())
+  userId   String
+  name     String
+  notes    String?
+  dueDate  DateTime
+  priority Priority @default(Low)
+  status   Status   @default(Scheduled)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -42,8 +39,8 @@ model Story {
 
 enum Status {
   Active
-  Scheduled
   Completed
+  Scheduled
   Archived
 }
 

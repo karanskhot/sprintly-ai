@@ -1,11 +1,11 @@
-import { bulk_update_sprints } from "@/actions/sprints";
+import { Metadata } from "next";
 
-export const metadata = {
-  template: "Today",
+export const metadata: Metadata = {
+  title: "Today",
 };
+
 const Today = async () => {
-  const { completed } = await bulk_update_sprints();
-  console.log(completed);
+  // const { completed } = await bulk_update_sprints();
   return <div>Today : {"completed"}</div>;
 };
 export default Today;

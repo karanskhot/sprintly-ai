@@ -11,16 +11,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { nav_links } from "@/data/links";
-import {
-  BookPlus,
-  BookPlusIcon,
-  BookTemplate,
-  CalendarPlus,
-  HelpCircle,
-  SettingsIcon,
-} from "lucide-react";
+import { HelpCircle, SettingsIcon } from "lucide-react";
 import Link from "next/link";
-import DialogContainer from "./DialogContainer";
 import { Separator } from "@/components/ui/separator";
 
 const AppSidebar = () => {

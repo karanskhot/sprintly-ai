@@ -1,4 +1,4 @@
-import { BookText, CalendarClock, LucideCalendarSync, LucideIcon, TargetIcon } from "lucide-react";
+import { BookText, LucideCalendarSync, LucideIcon, TargetIcon } from "lucide-react";
 
 export const nav_links: {
   link_name: string;

@@ -12,7 +12,7 @@ const layout = ({
       <AppSidebar />
       <div className="flex w-full flex-col px-3">
         <Navbar />
-        <div className="mx-auto w-full flex-1 border">{children}</div>
+        <div className="mx-auto w-full flex-1">{children}</div>
       </div>
     </SidebarProvider>
   );

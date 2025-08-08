@@ -12,12 +12,7 @@ interface IQuickAddStoryProps {
   dueDate: Date;
 }
 const QuickAddStoryForm = ({ dueDate }: IQuickAddStoryProps) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<CreateStoryValues>({
+  const { register, handleSubmit, reset } = useForm<CreateStoryValues>({
     resolver: zodResolver(createStorySchema),
     mode: "onChange",
     reValidateMode: "onChange",

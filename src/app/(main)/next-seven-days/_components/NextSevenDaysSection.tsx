@@ -1,7 +1,6 @@
 "use client";
 import { get_formatted_seven_days } from "@/lib/date-formatters";
 import Column from "./Column";
-import { get_stories_next_seven_days } from "@/dal/story_dal";
 import { Story } from "@prisma/client";
 import { isSameDay } from "date-fns";
 

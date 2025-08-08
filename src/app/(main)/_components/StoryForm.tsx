@@ -24,14 +24,7 @@ interface IStoryFormProps {
   type: "Create" | "Edit";
 }
 const StoryForm = ({ storyData, type }: IStoryFormProps) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    setValue,
-    formState: { errors, isSubmitting },
-  } = useForm<CreateStoryValues>({
+  const { register, handleSubmit, watch, reset, setValue } = useForm<CreateStoryValues>({
     resolver: zodResolver(createStorySchema),
     mode: "onChange",
     reValidateMode: "onChange",

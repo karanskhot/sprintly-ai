@@ -56,7 +56,7 @@ const AppSidebar = () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link
-                href="/setting"
+                href="/settings"
                 className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg px-3 py-2 transition-colors"
               >
                 <SettingsIcon className="text-sidebar-foreground/70 h-4 w-4" />

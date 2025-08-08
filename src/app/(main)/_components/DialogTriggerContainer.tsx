@@ -22,7 +22,7 @@ const DialogTriggerContainer = ({ children, type, storyData }: IDialogTriggerPro
       <DialogTrigger asChild className="cursor-pointer">
         <span className="cursor-pointer text-base">{children}</span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="bg-secondary/20 backdrop-blur-sm">
         <DialogHeader>
           <DialogTitle className="w-full text-center text-2xl">{"Story"}</DialogTitle>
           <DialogDescription className="w-full text-center">

@@ -29,8 +29,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${poppins.className} relative bg-cover bg-fixed bg-center bg-no-repeat`}
-          // style={{ backgroundImage: "url('/bg1.avif')" }}
+          className={`${poppins.className} relative overflow-x-hidden bg-cover bg-fixed bg-center bg-no-repeat`}
+          style={{ backgroundImage: "url('/bg1.avif')" }}
         >
           {children}
           <Toaster richColors position="bottom-center" />

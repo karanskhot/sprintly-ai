@@ -8,7 +8,10 @@ import { createStorySchema, CreateStoryValues } from "@/lib/validations";
 
 import { create_new_story } from "@/actions/story";
 
-const QuickAddStoryForm = () => {
+interface IQuickAddStoryProps {
+  dueDate: Date;
+}
+const QuickAddStoryForm = ({ dueDate }: IQuickAddStoryProps) => {
   const {
     register,
     handleSubmit,
@@ -21,7 +24,7 @@ const QuickAddStoryForm = () => {
     defaultValues: {
       name: "",
       notes: "",
-      dueDate: new Date(),
+      dueDate,
       priority: "Medium",
     },
   });
@@ -32,12 +35,10 @@ const QuickAddStoryForm = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="border-primary bg-secondary/70 hidden h-12 items-center justify-between rounded-md border px-2 py-3 shadow md:flex">
-        <div className="">
-          <PlusIcon className="text-muted-foreground h-5 w-5" />
-        </div>
+      <div className="hover:border-primary bg-secondary/70 flex h-12 items-center justify-between rounded-md border px-2 py-3 shadow">
+        <PlusIcon className="text-muted-foreground h-5 w-5" />
         <Input
-          placeholder="quick add new Story (hit enter to add)"
+          placeholder="Quick add story"
           className="border-none shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
           {...register("name")}
         />

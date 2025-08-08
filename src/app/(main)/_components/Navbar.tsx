@@ -6,7 +6,7 @@ import { BookPlusIcon } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="bg-background sticky top-0 z-50 flex items-center justify-between py-3">
+    <div className="sticky top-0 z-50 flex items-center justify-between bg-transparent py-3">
       <SidebarTrigger />
       <div className="flex items-center gap-2 space-x-3">
         <DialogContainer type="Create">

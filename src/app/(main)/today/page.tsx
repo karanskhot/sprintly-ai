@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import QuickAddStoryForm from "../_components/QuickAddStoryForm";
 import ActiveStorySection from "./_components/ActiveStorySection";
 import { get_active_stories } from "@/dal/story_dal";
-import PageHeader from "./_components/PageHeader";
+import PageHeader from "../_components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Today",
@@ -16,7 +16,9 @@ const Today = async () => {
     <div className="">
       <PageHeader pageHeaderTxt="Today" />
       <ActiveStorySection stories={active_stories} />
-      <QuickAddStoryForm />
+      <div className="hidden md:block">
+        <QuickAddStoryForm dueDate={new Date()} />
+      </div>
     </div>
   );
 };

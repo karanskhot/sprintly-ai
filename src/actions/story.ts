@@ -52,11 +52,13 @@ export const update_user_story = async (data: UpdateStoryValues) => {
       where: {
         userId,
         id: data.id,
-        status: { in: ["Active", "Scheduled", "Archived"] },
+        // status: { in: ["Active", "Scheduled", "Archived"] },
       },
     });
     if (!is_story_valid) throw new Error(`Unauthorized to modify this story.`);
-
+    console.log(data);
+    const status: Status = isSameDay(data.dueDate, new Date()) ? "Active" : "Scheduled";
+    console.log(status);
     const updated_story = await db.story.update({
       where: { id: data.id },
       data: {
@@ -64,11 +66,12 @@ export const update_user_story = async (data: UpdateStoryValues) => {
         dueDate: data.dueDate,
         notes: data.notes,
         priority: data.priority,
-        status: data.status,
+        status,
       },
     });
     revalidatePath("/today");
     revalidatePath("/next-seven-days");
+    console.log(updated_story);
     return { success: true, resp: updated_story };
   } catch (error) {
     console.log(error);

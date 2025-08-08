@@ -13,7 +13,6 @@ import {
 import { nav_links } from "@/data/links";
 import { HelpCircle, SettingsIcon } from "lucide-react";
 import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
 
 const AppSidebar = () => {
   return (
@@ -30,34 +29,32 @@ const AppSidebar = () => {
             </Link>
           </SidebarGroupLabel>
         </SidebarGroup>
-        <SidebarGroupContent className="px-3 py-4">
-          <SidebarMenu>
+        <SidebarGroupContent className="mt-10">
+          <SidebarMenu className="space-y-6">
             {nav_links.map((link) => (
               <SidebarMenuItem key={link.link_name}>
                 <SidebarMenuButton asChild>
                   <Link
                     href={link.link_url}
-                    className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg px-3 py-3 transition-colors"
+                    className="hover:bg-sidebar-accent rounded-lg transition-colors"
                   >
-                    <link.icon className="text-sidebar-foreground/70 h-5 w-5" />
-                    <span className="text-sm font-medium">{link.link_name}</span>
+                    <link.icon className="text-sidebar-foreground/70" />
+                    <span className="text-base font-medium">{link.link_name}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-            <Separator className="my-4" />
           </SidebarMenu>
         </SidebarGroupContent>
         <SidebarGroup />
       </SidebarContent>
-      <Separator />
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="">
         <SidebarMenu className="space-y-2">
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link
                 href="/settings"
-                className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg px-3 py-2 transition-colors"
+                className="hover:bg-sidebar-accent flex items-center rounded-lg transition-colors"
               >
                 <SettingsIcon className="text-sidebar-foreground/70 h-4 w-4" />
                 <span className="text-sm">Settings</span>
@@ -68,7 +65,7 @@ const AppSidebar = () => {
             <SidebarMenuButton asChild>
               <Link
                 href="/about"
-                className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg px-3 py-2 transition-colors"
+                className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg py-2 transition-colors"
               >
                 <HelpCircle className="text-sidebar-foreground/70 h-4 w-4" />
                 <span className="text-sm">About</span>
@@ -76,10 +73,6 @@ const AppSidebar = () => {
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-
-        <div className="border-sidebar-border mt-4 border-t pt-4">
-          <p className="text-sidebar-foreground/50 text-center text-xs">Powered by Sprintly.ai</p>
-        </div>
       </SidebarFooter>
     </Sidebar>
   );

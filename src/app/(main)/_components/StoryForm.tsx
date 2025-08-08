@@ -55,7 +55,7 @@ const StoryForm = ({ storyData, type }: IStoryFormProps) => {
           Name
         </Label>
         <Input
-          className="shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-0"
+          className="focus:border-primary border-primary/50 focus-visible:border-primary bg-transparent"
           {...register("name")}
           autoCorrect="false"
           autoComplete="false"
@@ -96,7 +96,10 @@ const StoryForm = ({ storyData, type }: IStoryFormProps) => {
         <Label className="text-base" htmlFor="notes">
           Notes
         </Label>
-        <Textarea {...register("notes")} className="min-h-48" />
+        <Textarea
+          {...register("notes")}
+          className="border-primary/50 focus:border-primary focus-visible:border-primary min-h-48"
+        />
       </div>
       <DialogFooter>
         <DialogClose asChild>

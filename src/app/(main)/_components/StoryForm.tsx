@@ -45,9 +45,14 @@ const StoryForm = ({ storyData, type }: IStoryFormProps) => {
 
   const onSubmit: SubmitHandler<CreateStoryValues> = async (data) => {
     if (type === "Create") {
-      await create_new_story(data);
+      const { success, resp } = await create_new_story(data);
+      if (success) {
+        reset();
+      } else {
+        console.error("Failed to create story:", resp);
+      }
     } else if (type === "Edit" && storyData?.id) {
-      await update_user_story({ ...data, id: storyData.id, status: storyData.status });
+      const {} = await update_user_story({ ...data, id: storyData.id, status: storyData.status });
     }
   };
   return (
@@ -56,7 +61,13 @@ const StoryForm = ({ storyData, type }: IStoryFormProps) => {
         <Label className="text-base" htmlFor="name">
           Name
         </Label>
-        <Input {...register("name")} autoComplete="false" autoFocus={true} />
+        <Input
+          className="shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-0"
+          {...register("name")}
+          autoCorrect="false"
+          autoComplete="false"
+          autoFocus={true}
+        />
       </div>
       <div className="flex items-center justify-between gap-6 space-y-1">
         <div className="w-1/2 space-y-1">

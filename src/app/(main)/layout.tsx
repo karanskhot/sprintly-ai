@@ -8,11 +8,11 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <SidebarProvider>
+    <SidebarProvider className="">
       <AppSidebar />
       <div className="flex w-full flex-col px-3">
         <Navbar />
-        <div className="mx-auto w-full flex-1">{children}</div>
+        {children}
       </div>
     </SidebarProvider>
   );

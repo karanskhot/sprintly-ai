@@ -35,9 +35,11 @@ export const create_new_story = async (data: CreateStoryValues) => {
       },
     });
     revalidatePath("/today");
-    return new_story;
+    return { success: true, resp: new_story };
+    // return new_story;
   } catch (error) {
     console.log(error);
+    return { success: false, resp: null };
   }
 };
 
@@ -70,9 +72,9 @@ export const update_user_story = async (data: UpdateStoryValues) => {
     });
     revalidatePath("/today");
     revalidatePath("/next-seven-days");
-    return updated_story;
+    return { success: true, resp: updated_story };
   } catch (error) {
     console.log(error);
-    throw new Error(`Something went wrong`);
+    return { success: false, resp: null };
   }
 };

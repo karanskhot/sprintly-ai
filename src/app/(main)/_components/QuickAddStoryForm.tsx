@@ -12,9 +12,7 @@ const QuickAddStoryForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<CreateStoryValues>({
     resolver: zodResolver(createStorySchema),
@@ -34,7 +32,7 @@ const QuickAddStoryForm = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="border-primary hidden h-12 items-center justify-between rounded-md border px-2 py-3 shadow md:flex">
+      <div className="border-primary bg-secondary/70 hidden h-12 items-center justify-between rounded-md border px-2 py-3 shadow md:flex">
         <div className="">
           <PlusIcon className="text-muted-foreground h-5 w-5" />
         </div>

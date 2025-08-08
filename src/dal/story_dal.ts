@@ -11,7 +11,7 @@ export const get_active_stories = async () => {
         status: "Active",
       },
       orderBy: {
-        name: "desc",
+        createdAt: "desc",
       },
     });
     return stories;

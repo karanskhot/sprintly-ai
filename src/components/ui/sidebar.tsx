@@ -254,14 +254,14 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("size-7 cursor-pointer md:size-6", className)}
+      className={cn("text-primary size-7 cursor-pointer md:size-6", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeftDashed className="size-full" strokeWidth={1.5} />
+      <PanelLeftDashed className="text-secondary size-full" strokeWidth={1.5} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

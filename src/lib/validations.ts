@@ -1,4 +1,4 @@
-import { Priority } from "@prisma/client";
+import { Priority, Status } from "@prisma/client";
 import z from "zod";
 
 export const createStorySchema = z.object({
@@ -6,9 +6,12 @@ export const createStorySchema = z.object({
   notes: z.string(),
   dueDate: z.date(),
   priority: z.enum(Priority),
-  reminders: z.boolean(),
-  sendDailyProgressReports: z.boolean(),
-  dailyProgressReportTime: z.string(),
+});
+
+export const updateStorySchema = createStorySchema.extend({
+  id: z.string(),
+  status: z.enum(Status),
 });
 
 export type CreateStoryValues = z.infer<typeof createStorySchema>;
+export type UpdateStoryValues = z.infer<typeof updateStorySchema>;

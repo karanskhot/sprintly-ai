@@ -10,9 +10,9 @@ const layout = ({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="flex w-full flex-col px-3">
+      <div className="flex w-full min-w-0 flex-col px-3">
         <Navbar />
-        <div className="mx-auto w-full flex-1 border">{children}</div>
+        <div className="min-w-0 overflow-hidden">{children}</div>
       </div>
     </SidebarProvider>
   );

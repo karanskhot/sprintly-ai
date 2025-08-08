@@ -1,13 +1,28 @@
 import { Story } from "@prisma/client";
 import DialogTriggerContainer from "./DialogTriggerContainer";
-import { ArchiveXIcon, Circle, CircleCheckBig } from "lucide-react";
+import { ArchiveXIcon, Circle, CircleCheckBig, GripVertical } from "lucide-react";
 import { update_user_story } from "@/actions/story";
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 
 interface IStoryCardProps {
   story: Story;
   index: number;
+  isDraggable?: boolean;
 }
-const StoryCard = ({ story, index }: IStoryCardProps) => {
+const StoryCard = ({ story, index, isDraggable = true }: IStoryCardProps) => {
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
+    id: story.id,
+    data: {
+      type: "story",
+      story: story,
+    },
+    disabled: !isDraggable,
+  });
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+  };
   // Get priority-based styling
   const getPriorityStyles = (priority: string) => {
     switch (priority) {
@@ -43,9 +58,11 @@ const StoryCard = ({ story, index }: IStoryCardProps) => {
   return (
     <DialogTriggerContainer key={story.id} type="Edit" storyData={story}>
       <div
+        ref={setNodeRef}
+        style={style}
         className={`group ${priorityStyles.background} rounded-md border ${priorityStyles.border} h-12 px-3 shadow-sm transition-all duration-200 hover:shadow-md ${priorityStyles.hoverBorder} ${
           story.status === "Completed" ? "opacity-60" : "opacity-100"
-        } mb-2`}
+        } ${isDragging ? "scale-105 rotate-2 opacity-50" : ""} mb-2`}
       >
         {/* Priority indicator line */}
         <div
@@ -59,13 +76,24 @@ const StoryCard = ({ story, index }: IStoryCardProps) => {
         />
 
         <div className="ml-1 flex h-full items-center justify-between gap-3">
-          {/* Left side - count, complete button, and story name */}
-          <div className="flex min-w-0 flex-1 items-center gap-3">
+          {/* Left side - drag handle, count, complete button, and story name */}
+          <div className="flex min-w-0 flex-1 items-center gap-2">
+            {/* Drag handle */}
+            {isDraggable && (
+              <div
+                {...attributes}
+                {...listeners}
+                className="cursor-grab opacity-50 transition-opacity hover:opacity-100 active:cursor-grabbing"
+              >
+                <GripVertical size={14} className="text-gray-400" />
+              </div>
+            )}
             {/* Count */}
-            <span className="w-4 text-center text-xs font-semibold text-gray-500">{index + 1}</span>
-
+            <span className="w-4 text-center text-xs font-semibold text-gray-500">
+              {index + 1}
+            </span>{" "}
             {/* Complete button */}
-            {story.status === "Active" ? (
+            {story.status !== "Completed" ? (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -86,7 +114,6 @@ const StoryCard = ({ story, index }: IStoryCardProps) => {
                 <CircleCheckBig size={16} />
               </div>
             )}
-
             {/* Story name */}
             <h3 className="flex-1 truncate text-sm font-medium text-gray-900">{story.name}</h3>
           </div>

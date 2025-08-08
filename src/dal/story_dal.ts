@@ -35,6 +35,7 @@ export const get_stories_next_seven_days = async () => {
           gte: today,
           lte: end_date,
         },
+        status: { notIn: ["Archived"] },
       },
       orderBy: {
         createdAt: "desc",

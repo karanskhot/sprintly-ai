@@ -52,7 +52,7 @@ export const update_user_story = async (data: UpdateStoryValues) => {
       where: {
         userId,
         id: data.id,
-        status: { in: ["Active", "Scheduled", "Archived"] },
+        // status: { in: ["Active", "Scheduled", "Archived"] },
       },
     });
     if (!is_story_valid) throw new Error(`Unauthorized to modify this story.`);

@@ -57,7 +57,6 @@ export const update_user_story = async (data: UpdateStoryValues) => {
     });
     if (!is_story_valid) throw new Error(`Unauthorized to modify this story.`);
 
-    const status: Status = isSameDay(data.dueDate, new Date()) ? "Active" : "Scheduled";
     const updated_story = await db.story.update({
       where: { id: data.id },
       data: {
@@ -65,7 +64,7 @@ export const update_user_story = async (data: UpdateStoryValues) => {
         dueDate: data.dueDate,
         notes: data.notes,
         priority: data.priority,
-        status,
+        status: data.status,
       },
     });
     revalidatePath("/today");
